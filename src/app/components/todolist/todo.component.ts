@@ -3,12 +3,16 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { ButtonModule } from 'primeng/button';
 import {FormsModule} from '@angular/forms';
+import { DialogModule } from 'primeng/dialog';
+import { Dialog } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+
 
 
 @Component({
     selector: 'app-todos',
     templateUrl: 'todo.component.html',
-    imports: [InputGroupModule,InputGroupAddonModule,ButtonModule,FormsModule]
+    imports: [InputGroupModule,InputGroupAddonModule,ButtonModule,FormsModule,DialogModule,Dialog,InputTextModule]
 })
 
 export class TodosComponent implements OnInit {
@@ -16,6 +20,11 @@ export class TodosComponent implements OnInit {
 
     task = '';
     todolist : {id:number , name:string , complet:boolean} []= [];
+    visible: boolean = false;
+
+    showDialog() {
+        this.visible = true;
+    }
 
     addtask(){
         this.todolist.push({id : this.todolist.length+1 , name: this.task, complet: false })
@@ -26,6 +35,11 @@ export class TodosComponent implements OnInit {
         this.todolist = this.todolist.filter((i) => i.id != id)
         
     }
+
+    edittask(){
+       
+    }
+    
 
     ngOnInit() { }
 }
