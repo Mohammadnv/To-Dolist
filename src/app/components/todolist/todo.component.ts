@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 
 
 
+
 @Component({
     selector: 'app-todos',
     templateUrl: 'todo.component.html',
@@ -20,11 +21,8 @@ export class TodosComponent implements OnInit {
 
     task = '';
     todolist : {id:number , name:string , complet:boolean} []= [];
-    visible: boolean = false;
+    showdialog : boolean = false
 
-    showDialog() {
-        this.visible = true;
-    }
 
     addtask(){
         this.todolist.push({id : this.todolist.length+1 , name: this.task, complet: false })
@@ -36,9 +34,17 @@ export class TodosComponent implements OnInit {
         
     }
 
+    opendialog(){
+        this.showdialog = true;
+    }
+
+
+
     edittask(){
        
     }
+
+
     
 
     ngOnInit() { }

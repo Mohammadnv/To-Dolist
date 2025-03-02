@@ -12,25 +12,26 @@
         <li class="ml-2.5">{{task.id}}:</li>
         <li>{{task.name}}</li>
         <div class="flex flex-row">
-            <div class="card flex justify-center">
-                <p-button (click)="showDialog()" label="Show" class="bg-amber-300 text-black p-2 rounded-2xl h-max mr-2.5"/>
-                <p-dialog header="Edit Profile" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
-                    <span class="p-text-secondary block mb-8">Update your information.</span>
-                    <div class="flex items-center gap-4 mb-4">
-                        <label for="username" class="font-semibold w-24">Username</label>
-                        <input pInputText id="username" class="flex-auto" autocomplete="off" />
-                    </div>
-                    <div class="flex items-center gap-4 mb-8">
-                        <label for="email" class="font-semibold w-24">Email</label>
-                        <input pInputText id="email" class="flex-auto" autocomplete="off" />
-                    </div>
-                    <div class="flex justify-end gap-2">
-                        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
-                        <p-button label="Save" (click)="visible = false" />
-                    </div>
-                </p-dialog>
-            </div>
-        <button class="bg-red-700 text-amber-50 p-2 rounded-2xl h-max mr-2.5" (click)="deletetask(task.id)">delete</button>
+        <p-button (click)="opendialog()" label="edit" class="bg-amber-300 text-amber-50 p-2 rounded-2xl h-max mr-2.5 " />
+        <button class="bg-red-700 text-amber-50 p-2 rounded-2xl h-max mr-2.5 " (click)="deletetask(task.id)">delete</button>
         </div>
     </ul>
 }
+
+
+
+<p-dialog header="Edit Profile" [modal]="true" [(visible)]="showdialog" [style]="{ width: '25rem' }">
+    <span class="p-text-secondary block mb-8">Update your information.</span>
+    <div class="flex items-center gap-4 mb-4">
+        <label for="edittask" class="font-semibold w-24">edittask</label>
+        <input pInputText id="edittask" class="flex-auto" autocomplete="off"  [(ngModel)]="addtask"/>
+    </div>
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancel" severity="secondary" (click)="showdialog = false" />
+        <p-button label="Save" (click)="showdialog = false" />
+    </div>
+</p-dialog>
+
+
+
+
