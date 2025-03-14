@@ -22,6 +22,8 @@ export class TodosComponent implements OnInit {
     task = '';
     todolist : {id:number , name:string , complet:boolean} []= [];
     showdialog : boolean = false
+    newtask = '';
+    selectedTaskId: number | null = null;
 
 
     addtask(){
@@ -34,17 +36,27 @@ export class TodosComponent implements OnInit {
         
     }
 
-    opendialog(){
+    opendialog(taskId: number) {
+        this.selectedTaskId = taskId;
+        const taskToEdit = this.todolist.find(task => task.id === taskId);
+        if (taskToEdit) {
+            this.newtask = taskToEdit.name;
+        }
         this.showdialog = true;
     }
+    
 
-
-
-    edittask(){
-       
+    savenewtask() {
+        if (this.selectedTaskId !== null) {
+            const taskToEdit = this.todolist.find(task => task.id === this.selectedTaskId);
+            if (taskToEdit) {
+                taskToEdit.name = this.newtask;
+            }
+        }
+        this.newtask = '';
+        this.showdialog = false;
+        this.selectedTaskId = null;
     }
-
-
     
 
     ngOnInit() { }
